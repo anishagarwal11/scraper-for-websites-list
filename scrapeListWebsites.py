@@ -43,7 +43,7 @@ class ScrapeGoogleSearchClass:
                         if link_match:
                             link = link_match.group()
                 # Exclude links from specific domains (e.g., google.com)
-                            if "google.com" not in link:
+                            if "google" not in link:
                                 links.append(link)
                 next_button = driver.find_element_by_id("pnnext")
                 next_button.click()
