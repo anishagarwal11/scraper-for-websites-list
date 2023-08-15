@@ -22,14 +22,14 @@ class ScrapeGoogleSearchClass:
         # Send a GET request to Google
         try:
             driver.get(google_search_url)
-            time.sleep(5)  # Give time for the page to load
+            time.sleep(3)  # Give time for the page to load
         except Exception as e:
             print("Failed to open the Google search page:", e)
 
         # if response.status_code == 200:
         #     # soup = BeautifulSoup(response.content, "html.parser")
         #     # search_results = soup.find_all("div")
-        for _ in range(10):  # Example: Loop through 5 pages
+        for _ in range(10):
             try:
                 page_source = driver.page_source
                 soup = BeautifulSoup(page_source, "html.parser")
@@ -45,17 +45,17 @@ class ScrapeGoogleSearchClass:
                 # Exclude links from specific domains (e.g., google.com)
                             if "google" not in link:
                                 links.append(link)
-                next_button = driver.find_element_by_id("pnnext")
+                next_button = driver.find_element(By.ID, 'pnnext')
                 next_button.click()
-                time.sleep(5)
+                time.sleep(2)
             except NoSuchElementException as e:
                 print("Failed to find search results:", e)
             except Exception as e:
                 print("An error occurred:", e)
-        driver.quit()
         res = []
         finalData = np.array(links)
         [res.append(x) for x in finalData if x not in res]
+        driver.quit()
         if res:
             print("Links extracted and saved to 'search_links.txt'")
             with open("search_links.txt", "w") as f:

@@ -21,7 +21,7 @@ class ScrapeSitesListed:
             for url in urlList:
                 try:
                     response = requests.get(url)
-                    time.sleep(5)
+                    time.sleep(3)
                 except requests.exceptions.RequestException as e:
                     print("Failed to retrieve search results:", e)
                     continue
