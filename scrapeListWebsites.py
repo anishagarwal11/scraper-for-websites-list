@@ -22,7 +22,7 @@ class ScrapeGoogleSearchClass:
         # Send a GET request to Google
         try:
             driver.get(google_search_url)
-            time.sleep(2)  # Give time for the page to load
+            time.sleep(5)  # Give time for the page to load
         except Exception as e:
             print("Failed to open the Google search page:", e)
 
@@ -47,7 +47,7 @@ class ScrapeGoogleSearchClass:
                                 links.append(link)
                 next_button = driver.find_element_by_id("pnnext")
                 next_button.click()
-                time.sleep(2)
+                time.sleep(5)
             except NoSuchElementException as e:
                 print("Failed to find search results:", e)
             except Exception as e:

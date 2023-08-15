@@ -23,6 +23,7 @@ class ScrapeSitesListed:
                 print("bhai bhai" + str(countforwebsistes))
                 try:
                     response = requests.get(url)
+                    time.sleep(5)
                 except requests.exceptions.RequestException as e:
                     print("Failed to retrieve search results:", e)
                     continue
@@ -45,9 +46,7 @@ class ScrapeSitesListed:
             [res.append(x) for x in finalData if x not in res]
             return np.array(res)
 
-
     scraped_urls = scrape_urls(website_url)
-    time.sleep(2)
 
     if len(scraped_urls) > 0:
         # Write the URLs to a text file
